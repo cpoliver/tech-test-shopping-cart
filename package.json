@@ -1,19 +1,22 @@
 {
   "name": "tech-test-shopping-cart",
   "version": "1.0.0",
-  "description": "This is some simple code to demonstrate familiarity with node.js",
+  "description": "some simple code to demonstrate familiarity with node.js",
   "main": "index.js",
+  "repository": "https://github.com/cpoliver/tech-test-shopping-cart.git",
+  "author": "Charles P. Oliver <cpoliver@gmail.com>",
+  "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --require babel-polyfill --compilers js:babel-register src/**/*.test.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cpoliver/tech-test-shopping-cart.git"
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-register": "^6.24.1"
   },
-  "author": "Charles P. Oliver",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/cpoliver/tech-test-shopping-cart/issues"
-  },
-  "homepage": "https://github.com/cpoliver/tech-test-shopping-cart#readme"
+  "devDependencies": {
+    "mocha": "^3.3.0",
+    "chai": "^3.5.0"
+  }
 }
