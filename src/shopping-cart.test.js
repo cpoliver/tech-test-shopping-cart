@@ -1,11 +1,12 @@
 import { expect } from 'chai';
 
 import ShoppingCart from './shopping-cart';
+import ITEMS from './items';
 
-const APPLE = 'apple';
-const ORANGE = 'orange';
-const GARLIC = 'garlic';
-const PAPAYA = 'papaya';
+const APPLE = ITEMS.apple.id;
+const ORANGE = ITEMS.orange.id;
+const GARLIC = ITEMS.garlic.id;
+const PAPAYA = ITEMS.papaya.id;
 
 describe('the shopping cart', () => {
     context('when initialized with defaults', () => {

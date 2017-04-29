@@ -1,3 +1,5 @@
+import ITEMS from './items';
+
 export default class ShoppingCart {
     constructor(items = []) {
         this.items = items;
@@ -16,17 +18,10 @@ export default class ShoppingCart {
     }
 
     getTotalCost() {
-        const prices = {
-            apple: 0.25,
-            orange: 0.30,
-            garlic: 0.15,
-            papaya: 0.50
-        };
-
-        const subtotal = this.items.reduce((total, curr) => total + prices[curr], 0);
-
+        const subtotal = this.items.reduce((total, item) => total + ITEMS[item].price, 0);
         const discount = (papayaCount) => Math.floor(papayaCount / 3) * 0.5;
-        let papayaCount = this.items.filter((item) => item === 'papaya').length;
+
+        let papayaCount = this.items.filter((item) => item === ITEMS.papaya.id).length;
 
         return subtotal - discount(papayaCount);
     }
