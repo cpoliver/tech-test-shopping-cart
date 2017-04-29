@@ -5,8 +5,8 @@ This is some simple code to demonstrate familiarity with node.js. The main tests
 
 
 ## Dependencies
-- node v7.7.1
-- npm v2.14.3
+- node v7.9.0
+- yarn v0.18.1
 
 _NOTE:_ This was developed in MacOS Sierra v10.12.3 using the aforementioned versions. This may be compatible with other versions, but cannot be guaranteed.
 
