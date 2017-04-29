@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 
 import ShoppingCart from './shopping-cart';
 import ITEMS from './items';
@@ -129,6 +130,34 @@ describe('the shopping cart', () => {
 
                 expect(cart.getTotalCost()).to.equal(2.80);
             });
+        });
+    });
+
+    describe('the get line item method', () => {
+        it('should return an object with the item id, count, price, and subtotal', () => {
+            const cart = new ShoppingCart([ APPLE, APPLE, ORANGE ]);
+            const lineItem = cart.getLineItem(APPLE);
+
+            expect(lineItem).to.deep.equal({
+                id: 'apple',
+                count: 2,
+                price: 0.25,
+                subtotal: 0.5
+            });
+        });
+    });
+
+    describe('the get line items method', () => {
+        it('should call get line item method once for each unique item', () => {
+            const cart = new ShoppingCart([ APPLE, APPLE, GARLIC, ORANGE, GARLIC, PAPAYA ]);
+            cart.getLineItem = spy();
+            cart.getLineItems();
+
+            expect(cart.getLineItem.callCount).to.equal(4);
+            expect(cart.getLineItem.firstCall.args[0]).to.equal(APPLE);
+            expect(cart.getLineItem.secondCall.args[0]).to.equal(GARLIC);
+            expect(cart.getLineItem.thirdCall.args[0]).to.equal(ORANGE);
+            expect(cart.getLineItem.lastCall.args[0]).to.equal(PAPAYA);
         });
     });
 });
