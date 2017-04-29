@@ -134,20 +134,38 @@ describe('the shopping cart', () => {
     });
 
     describe('the get line item method', () => {
-        it('should return an object with the item id, count, price, and subtotal', () => {
-            const cart = new ShoppingCart([ APPLE, APPLE, ORANGE ]);
-            const lineItem = cart.getLineItem(APPLE);
+        context('when discount is not applicable', () => {
+            it('should return an object with the correct item id, count, price, discount, and subtotal', () => {
+                const cart = new ShoppingCart([ APPLE, APPLE, ORANGE ]);
+                const lineItem = cart.getLineItem(APPLE);
 
-            expect(lineItem).to.deep.equal({
-                id: 'apple',
-                count: 2,
-                price: 0.25,
-                subtotal: 0.5
+                expect(lineItem).to.deep.equal({
+                    id: 'apple',
+                    count: 2,
+                    price: 0.25,
+                    discount: 0,
+                    subtotal: 0.5
+                });
+            });
+        });
+
+        context('when discount is applicable', () => {
+            it('should return an object with the correct item id, count, price, discount, and subtotal', () => {
+                const cart = new ShoppingCart([ PAPAYA, PAPAYA, APPLE, PAPAYA, ORANGE ]);
+                const lineItem = cart.getLineItem(PAPAYA);
+
+                expect(lineItem).to.deep.equal({
+                    id: 'papaya',
+                    count: 3,
+                    price: 0.50,
+                    discount: 0.50,
+                    subtotal: 1.0
+                });
             });
         });
     });
 
-    describe('the get line items method', () => {
+    describe.only('the get line items method', () => {
         it('should call get line item method once for each unique item', () => {
             const cart = new ShoppingCart([ APPLE, APPLE, GARLIC, ORANGE, GARLIC, PAPAYA ]);
             cart.getLineItem = spy();
@@ -158,6 +176,37 @@ describe('the shopping cart', () => {
             expect(cart.getLineItem.secondCall.args[0]).to.equal(GARLIC);
             expect(cart.getLineItem.thirdCall.args[0]).to.equal(ORANGE);
             expect(cart.getLineItem.lastCall.args[0]).to.equal(PAPAYA);
+        });
+
+        it('should return an array of results from get line item for each unique item', () => {
+            const cart = new ShoppingCart([ APPLE, APPLE, GARLIC, ORANGE, GARLIC, PAPAYA ]);
+            const lineItems = cart.getLineItems();
+
+            expect(lineItems).to.deep.equal([{
+                count: 2,
+                discount: 0,
+                id: 'apple',
+                price: 0.25,
+                subtotal: 0.5
+            }, {
+                count: 2,
+                discount: 0,
+                id: 'garlic',
+                price: 0.15,
+                subtotal: 0.3
+            }, {
+                count: 1,
+                discount: 0,
+                id: 'orange',
+                price: 0.3,
+                subtotal: 0.3
+            }, {
+                count: 1,
+                discount: 0,
+                id: 'papaya',
+                price: 0.5,
+                subtotal: 0.5
+            }]);
         });
     });
 });
