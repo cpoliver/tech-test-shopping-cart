@@ -41,12 +41,6 @@ export default class ShoppingCart {
     }
 
     getTotalCost() {
-        const subtotal = this.itemIds.reduce((total, itemId) => total + ITEMS[itemId].price, 0);
-
-        const discount = (papayaCount) => Math.floor(papayaCount / 3) * 0.5;
-
-        let papayaCount = this.itemIds.filter((itemId) => itemId === ITEMS.papaya.id).length;
-
-        return subtotal - discount(papayaCount);
+        return this.getLineItems().reduce((total, { subtotal }) => subtotal + total, 0);
     }
 };

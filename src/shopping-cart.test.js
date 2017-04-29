@@ -165,7 +165,7 @@ describe('the shopping cart', () => {
         });
     });
 
-    describe.only('the get line items method', () => {
+    describe('the get line items method', () => {
         it('should call get line item method once for each unique item', () => {
             const cart = new ShoppingCart([ APPLE, APPLE, GARLIC, ORANGE, GARLIC, PAPAYA ]);
             cart.getLineItem = spy();
