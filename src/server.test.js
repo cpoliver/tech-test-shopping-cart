@@ -10,17 +10,19 @@ const ORANGE = ITEMS.orange.id;
 const GARLIC = ITEMS.garlic.id;
 const PAPAYA = ITEMS.papaya.id;
 
-describe.only('the server', () => {
+const onEnd = (error, done) => {
+    if (error) { throw error; }
+    done();
+};
+
+describe('the server', () => {
     describe('the /healthcheck endpoint', () => {
         it('returns confirmation that the server is running', (done) => {
             request(server)
                 .get('/healthcheck')
                 .expect(200)
                 .expect('"all gravy"')
-                .end((error) => {
-                    if (error) { throw error; }
-                    done();
-                });
+                .end((error) => onEnd(error, done));
         });
     });
 
@@ -31,10 +33,7 @@ describe.only('the server', () => {
                     .post('/cart')
                     .expect(200)
                     .expect({ lineItems: [], total: 0 })
-                    .end((error) => {
-                        if (error) { throw error; }
-                        done();
-                    });
+                    .end((error) => onEnd(error, done));
             });
         });
 
@@ -49,10 +48,7 @@ describe.only('the server', () => {
                     .send(items)
                     .expect(200)
                     .expect(expected)
-                    .end((error) => {
-                        if (error) { throw error; }
-                        done();
-                    });
+                    .end((error) => onEnd(error, done));
             });
         });
     });
