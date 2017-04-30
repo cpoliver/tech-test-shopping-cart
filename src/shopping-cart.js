@@ -40,6 +40,13 @@ export default class ShoppingCart {
         return { discount, subtotal };
     }
 
+    getReceipt() {
+        const lineItems = this.getLineItems();
+        const total = this.getTotalCost();
+
+        return { lineItems, total };
+    }
+
     getTotalCost() {
         return this.getLineItems().reduce((total, { subtotal }) => subtotal + total, 0);
     }

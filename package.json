@@ -12,6 +12,7 @@
     "test:watch": "mocha --require babel-polyfill --compilers js:babel-register src/**/*.test.js --watch"
   },
   "dependencies": {
+    "cli-table": "^0.3.1",
     "restify": "^4.3.0"
   },
   "devDependencies": {

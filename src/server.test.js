@@ -26,11 +26,11 @@ describe.only('the server', () => {
 
     describe('the /cart endpoint', () => {
         context('when requested with no body', () => {
-            it('responds with an empty array', (done) => {
+            it('responds with an empty receipt', (done) => {
                 request(server)
                     .post('/cart')
                     .expect(200)
-                    .expect([])
+                    .expect({ lineItems: [], total: 0 })
                     .end((error) => {
                         if (error) { throw error; }
                         done();
@@ -39,10 +39,10 @@ describe.only('the server', () => {
         });
 
         context('when requested with an array of valid items', () => {
-            it('responds with an array of line items', (done) => {
+            it('responds with a receipt', (done) => {
                 const items = [ APPLE, ORANGE, GARLIC, PAPAYA ];
                 const cart = new ShoppingCart(items);
-                const expected = cart.getLineItems();
+                const expected = cart.getReceipt();
 
                 request(server)
                     .post('/cart')
