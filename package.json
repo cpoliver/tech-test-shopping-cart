@@ -7,16 +7,18 @@
   "author": "Charles P. Oliver <cpoliver@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "dev": "babel-node ./index.js",
     "test": "mocha --require babel-polyfill --compilers js:babel-register src/**/*.test.js",
     "test:watch": "mocha --require babel-polyfill --compilers js:babel-register src/**/*.test.js --watch"
   },
   "dependencies": {
-    "babel": "^6.23.0",
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-env": "^1.4.0",
-    "babel-register": "^6.24.1"
+    "restify": "^4.3.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-register": "^6.24.1",
     "chai": "^3.5.0",
     "mocha": "^3.3.0",
     "sinon": "^2.1.0"
