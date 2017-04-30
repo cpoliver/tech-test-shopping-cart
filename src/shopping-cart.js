@@ -1,53 +1,35 @@
 import ITEMS from './items';
 
-export default class ShoppingCart {
-    constructor(itemsIds = []) {
-        this.itemIds = itemsIds;
-    }
+export function getLineItem(itemId, cartItems) {
+    const { id, price } = ITEMS[itemId];
+    const count = cartItems.filter((itemId) => itemId === id).length;
+    const { discount, subtotal } = getLineTotal(id, count, price);
 
-    addItem(itemId) {
-        this.addItems([ itemId ]);
-    }
+    return { id, count, price, discount, subtotal };
+}
 
-    addItems(itemIds) {
-        this.itemIds = this.itemIds.concat(itemIds);
-    }
+export function getLineItems(cartItems) {
+    const uniqueItemIds = new Set(cartItems);
+    return [...uniqueItemIds].map((itemId) => getLineItem(itemId, cartItems));
+}
 
-    getItems() {
-        return this.itemIds;
-    }
+export function getLineTotal(id, count, price) {
+    const discountApplies = id === ITEMS.papaya.id && count >= 3;
+    const calculateDiscount = (count) => Math.floor(count / 3) * 0.5;
 
-    getLineItem(itemId) {
-        const { id, price } = ITEMS[itemId];
-        const count = this.itemIds.filter((itemId) => itemId === id).length;
-        const { discount, subtotal } = this.getLineTotal(id, count, price);
+    const discount = discountApplies ? calculateDiscount(count) : 0;
+    const subtotal = (price * count) - discount;
 
-        return { id, count, price, discount, subtotal };
-    }
+    return { discount, subtotal };
+}
 
-    getLineItems() {
-        const uniqueItemIds = new Set(this.itemIds);
-        return [...uniqueItemIds].map(this.getLineItem.bind(this));
-    }
+export function getReceipt(cartItems) {
+    const lineItems = getLineItems(cartItems);
+    const total = getTotalCost(cartItems);
 
-    getLineTotal(id, count, price) {
-        const discountApplies = id === ITEMS.papaya.id && count >= 3;
-        const calculateDiscount = (count) => Math.floor(count / 3) * 0.5;
+    return { lineItems, total };
+}
 
-        const discount = discountApplies ? calculateDiscount(count) : 0;
-        const subtotal = (price * count) - discount;
-
-        return { discount, subtotal };
-    }
-
-    getReceipt() {
-        const lineItems = this.getLineItems();
-        const total = this.getTotalCost();
-
-        return { lineItems, total };
-    }
-
-    getTotalCost() {
-        return this.getLineItems().reduce((total, { subtotal }) => subtotal + total, 0);
-    }
-};
+export function getTotalCost(cartItems) {
+    return getLineItems(cartItems).reduce((total, { subtotal }) => subtotal + total, 0);
+}

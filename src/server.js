@@ -1,6 +1,6 @@
 import restify from 'restify';
 
-import ShoppingCart from './shopping-cart';
+import { getReceipt } from './shopping-cart';
 import logReceipt from './log-receipt';
 
 const server = restify.createServer();
@@ -11,8 +11,8 @@ server.get('/healthcheck/', (request, response) => {
 });
 
 server.post('/cart/', (request, response) => {
-    const cart = new ShoppingCart(request.body);
-    const receipt = cart.getReceipt();
+    const cartItems = request.body;
+    const receipt = getReceipt(cartItems);
 
     logReceipt(receipt);
 

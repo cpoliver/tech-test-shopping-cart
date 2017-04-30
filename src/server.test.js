@@ -2,8 +2,8 @@ import request from 'supertest';
 import { expect } from 'chai';
 
 import server from './server';
-import ShoppingCart from './shopping-cart';
 import ITEMS from './items';
+import { getReceipt } from './shopping-cart';
 
 const APPLE = ITEMS.apple.id;
 const ORANGE = ITEMS.orange.id;
@@ -40,8 +40,7 @@ describe('the server', () => {
         context('when requested with an array of valid items', () => {
             it('responds with a receipt', (done) => {
                 const items = [ APPLE, ORANGE, GARLIC, PAPAYA ];
-                const cart = new ShoppingCart(items);
-                const expected = cart.getReceipt();
+                const expected = getReceipt(items);
 
                 request(server)
                     .post('/cart')
