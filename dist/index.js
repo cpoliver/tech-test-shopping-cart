@@ -8,6 +8,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 console.log('starting server...');
 
-_server2.default.listen(8080, function () {
-    console.log(_server2.default.name + ' listening at ' + _server2.default.url);
+var port = process.env.PORT || 5000;
+
+_server2.default.listen(port, function () {
+    console.log(_server2.default.name + ' listening on port ' + port);
 });
