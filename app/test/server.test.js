@@ -1,9 +1,9 @@
 import request from 'supertest';
 import { expect } from 'chai';
 
-import server from './server';
-import ITEMS from './items';
-import { getReceipt } from './shopping-cart';
+import server from '../src/server';
+import ITEMS from '../src/items';
+import { getReceipt } from '../src/shopping-cart';
 
 const APPLE = ITEMS.apple.id;
 const ORANGE = ITEMS.orange.id;

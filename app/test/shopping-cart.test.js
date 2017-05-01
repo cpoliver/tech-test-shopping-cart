@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
 
-import { getLineItem, getLineItems, getLineTotal, getReceipt, getTotalCost } from './shopping-cart';
-import ITEMS from './items';
+import { getLineItem, getLineItems, getLineTotal, getReceipt, getTotalCost } from '../src/shopping-cart';
+import ITEMS from '../src/items';
 
 const APPLE = ITEMS.apple.id;
 const ORANGE = ITEMS.orange.id;
