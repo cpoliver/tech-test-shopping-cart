@@ -39,7 +39,7 @@ describe('the server', () => {
 
         context('when requested with an array of valid items', () => {
             it('responds with a receipt', (done) => {
-                const items = [ APPLE, ORANGE, GARLIC, PAPAYA ];
+                const items = [ APPLE, ORANGE, ORANGE, ORANGE, GARLIC, PAPAYA ];
                 const expected = getReceipt(items);
 
                 request(server)

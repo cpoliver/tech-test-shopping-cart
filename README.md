@@ -16,16 +16,16 @@ This is some simple code to demonstrate familiarity with node.js. The main tests
 - node v7.9.0
 - yarn v0.23.3
 
-_NOTE:_ This was developed in MacOS Sierra v10.12.3 using the aforementioned versions. This may be compatible with other versions, but cannot be guaranteed.
+*_NOTE:_ This was developed in MacOS Sierra v10.12.3 using the aforementioned versions. This may be compatible with other versions, but cannot be guaranteed.*
 
 
 ## Getting Started
 - clone this repository: `git clone https://github.com/cpoliver/tech-test-shopping-cart.git`
 - install the project dependencies: `yarn install`
-- run the app with `node-babel`: `yarn start`
+- run the app for development: `yarn dev` (on-the-fly transpilation with `babel-node`)
 - run the unit tests: `yarn test` or `yarn test:watch`
 - build the transpiled sources (to `./dist/`): `yarn run build`
-- run the build sources `yarn start`
+- run the built sources `yarn start`
 
 
 ## Heroku endpoints
@@ -57,36 +57,37 @@ Returns a string if the server is running
     {
       "id": "apple",
       "count": 1,
-      "price": 0.25,
+      "price": 25,
       "discount": 0,
-      "subtotal": 0.25
+      "subtotal": 25
     },
     {
       "id": "orange",
       "count": 1,
-      "price": 0.3,
+      "price": 30,
       "discount": 0,
-      "subtotal": 0.3
+      "subtotal": 30
     },
     {
       "id": "garlic",
       "count": 2,
-      "price": 0.15,
+      "price": 15,
       "discount": 0,
-      "subtotal": 0.3
+      "subtotal": 30
     },
     {
       "id": "papaya",
       "count": 3,
-      "price": 0.5,
-      "discount": 0.5,
+      "price": 50,
+      "discount": 50,
       "subtotal": 1
     }
   ],
-  "total": 1.85
+  "total": 185
 }
 ```
 
+*_NOTE:_ All prices are represented in pence because JavaScript*
 
 ## Notes
 There are some things that have not been done as I would like, due to the time contraints. Below are things that I would usually do when working on production code, but decided against in order to write a solid, basic implementation with good test coverage.
@@ -95,6 +96,28 @@ There are some things that have not been done as I would like, due to the time c
  - Perform validation on the request to `/cart`, to handle non-array, or arrays containing invalid items.
  - Set up a webpack build process instead of manually running the build script and including the artefacts in the repo
  - Complete UI and be stricter on the code quality with that repo (more below)
+
+
+## Log Table
+When running the node server locally and a response is successfully sent, a table containing the receipt information is logged to to console. An example of this can be found below.
+
+```
+┌────────┬───────┬───────┬──────────┬──────────┐
+│ ITEM   │ PRICE │ COUNT │ DISCOUNT │ SUBTOTAL │
+├────────┼───────┼───────┼──────────┼──────────┤
+│ apple  │ £0.25 │ 1     │ -        │ £0.25    │
+├────────┼───────┼───────┼──────────┼──────────┤
+│ orange │ £0.30 │ 3     │ -        │ £0.90    │
+├────────┼───────┼───────┼──────────┼──────────┤
+│ garlic │ £0.15 │ 1     │ -        │ £0.15    │
+├────────┼───────┼───────┼──────────┼──────────┤
+│ papaya │ £0.50 │ 1     │ -        │ £0.50    │
+├────────┼───────┼───────┼──────────┼──────────┤
+│        │       │       │ TOTAL    │ £1.80    │
+└────────┴───────┴───────┴──────────┴──────────┘
+```
+
+*_NOTE:_ Prices are displayed in decimal as this looks more like a receipt*
 
 
 ## React App

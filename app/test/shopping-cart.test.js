@@ -27,7 +27,7 @@ describe('the shopping cart module', () => {
             it('should return the correct total', () => {
                 const items = [ APPLE ];
 
-                expect(getTotalCost(items)).to.equal(0.25);
+                expect(getTotalCost(items)).to.equal(25);
             });
         });
 
@@ -35,7 +35,7 @@ describe('the shopping cart module', () => {
             it('should return the correct total', () => {
                 const items = [ ORANGE ];
 
-                expect(getTotalCost(items)).to.equal(0.30);
+                expect(getTotalCost(items)).to.equal(30);
             });
         });
 
@@ -43,7 +43,7 @@ describe('the shopping cart module', () => {
             it('should return the correct total', () => {
                 const items = [ ORANGE, ORANGE, ORANGE ];
 
-                expect(getTotalCost(items)).to.equal(0.90);
+                expect(getTotalCost(items)).to.equal(90);
             });
         });
 
@@ -51,7 +51,7 @@ describe('the shopping cart module', () => {
             it('should return the correct total', () => {
                 const items = [ GARLIC ];
 
-                expect(getTotalCost(items)).to.equal(0.15);
+                expect(getTotalCost(items)).to.equal(15);
             });
         });
 
@@ -59,7 +59,7 @@ describe('the shopping cart module', () => {
             it('should return the correct total', () => {
                 const items = [ PAPAYA ];
 
-                expect(getTotalCost(items)).to.equal(0.50);
+                expect(getTotalCost(items)).to.equal(50);
             });
         });
 
@@ -67,7 +67,7 @@ describe('the shopping cart module', () => {
             it('should return the correct total', () => {
                 const items = [ PAPAYA, PAPAYA, PAPAYA ];
 
-                expect(getTotalCost(items)).to.equal(1.00);
+                expect(getTotalCost(items)).to.equal(100);
             });
         });
 
@@ -76,7 +76,7 @@ describe('the shopping cart module', () => {
                 it('should return the correct total with the discount applied', () => {
                     const items = [ PAPAYA, PAPAYA, PAPAYA, PAPAYA, PAPAYA, PAPAYA ];
 
-                    expect(getTotalCost(items)).to.equal(2.00);
+                    expect(getTotalCost(items)).to.equal(200);
                 });
             });
 
@@ -84,7 +84,7 @@ describe('the shopping cart module', () => {
                 it('should return the correct total with the discount applied', () => {
                     const items = [ PAPAYA, PAPAYA, PAPAYA, PAPAYA, PAPAYA ];
 
-                    expect(getTotalCost(items)).to.equal(2.00);
+                    expect(getTotalCost(items)).to.equal(200);
                 });
             });
         });
@@ -93,7 +93,7 @@ describe('the shopping cart module', () => {
             it('should return the correct total', () => {
                 const items = [ APPLE, ORANGE, ORANGE, GARLIC, GARLIC, GARLIC, PAPAYA, PAPAYA, PAPAYA, PAPAYA ];
 
-                expect(getTotalCost(items)).to.equal(2.80);
+                expect(getTotalCost(items)).to.equal(280);
             });
         });
     });
@@ -107,9 +107,9 @@ describe('the shopping cart module', () => {
                 expect(lineItem).to.deep.equal({
                     id: 'apple',
                     count: 2,
-                    price: 0.25,
+                    price: 25,
                     discount: 0,
-                    subtotal: 0.5
+                    subtotal: 50
                 });
             });
         });
@@ -122,9 +122,9 @@ describe('the shopping cart module', () => {
                 expect(lineItem).to.deep.equal({
                     id: 'papaya',
                     count: 3,
-                    price: 0.50,
-                    discount: 0.50,
-                    subtotal: 1.0
+                    price: 50,
+                    discount: 50,
+                    subtotal: 100
                 });
             });
         });
@@ -139,26 +139,26 @@ describe('the shopping cart module', () => {
                 count: 2,
                 discount: 0,
                 id: 'apple',
-                price: 0.25,
-                subtotal: 0.5
+                price: 25,
+                subtotal: 50
             }, {
                 count: 2,
                 discount: 0,
                 id: 'garlic',
-                price: 0.15,
-                subtotal: 0.3
+                price: 15,
+                subtotal: 30
             }, {
                 count: 1,
                 discount: 0,
                 id: 'orange',
-                price: 0.3,
-                subtotal: 0.3
+                price: 30,
+                subtotal: 30
             }, {
                 count: 1,
                 discount: 0,
                 id: 'papaya',
-                price: 0.5,
-                subtotal: 0.5
+                price: 50,
+                subtotal: 50
             }]);
         });
     });

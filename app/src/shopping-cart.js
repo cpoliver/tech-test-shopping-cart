@@ -15,7 +15,7 @@ export function getLineItems(cartItems) {
 
 export function getLineTotal(id, count, price) {
     const discountApplies = id === ITEMS.papaya.id && count >= 3;
-    const calculateDiscount = (count) => Math.floor(count / 3) * 0.5;
+    const calculateDiscount = (count) => Math.floor(count / 3) * ITEMS.papaya.price;
 
     const discount = discountApplies ? calculateDiscount(count) : 0;
     const subtotal = (price * count) - discount;

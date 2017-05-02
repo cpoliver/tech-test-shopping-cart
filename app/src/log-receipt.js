@@ -5,7 +5,7 @@ export default function logReceipt({ lineItems, total }) {
         head: ['ITEM', 'PRICE', 'COUNT', 'DISCOUNT', 'SUBTOTAL'],
     });
 
-    const toPrice = (num) => num === 0 ? '-' : '£' + num.toFixed(2);
+    const toPrice = (num) => num === 0 ? '-' : '£' + (num / 100).toFixed(2);
 
     lineItems.map(({ id, price, count, discount, subtotal }) => table.push([
         id, toPrice(price), count, toPrice(discount), toPrice(subtotal)
