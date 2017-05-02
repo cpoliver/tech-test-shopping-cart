@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = {
-    apple: { id: 'apple', price: 0.25 },
-    orange: { id: 'orange', price: 0.30 },
-    garlic: { id: 'garlic', price: 0.15 },
-    papaya: { id: 'papaya', price: 0.50 }
+    apple: { id: 'apple', price: 25 },
+    orange: { id: 'orange', price: 30 },
+    garlic: { id: 'garlic', price: 15 },
+    papaya: { id: 'papaya', price: 50 }
 };

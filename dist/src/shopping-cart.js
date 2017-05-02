@@ -43,7 +43,7 @@ function getLineItems(cartItems) {
 function getLineTotal(id, count, price) {
     var discountApplies = id === _items2.default.papaya.id && count >= 3;
     var calculateDiscount = function calculateDiscount(count) {
-        return Math.floor(count / 3) * 0.5;
+        return Math.floor(count / 3) * _items2.default.papaya.price;
     };
 
     var discount = discountApplies ? calculateDiscount(count) : 0;

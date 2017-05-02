@@ -20,7 +20,7 @@ function logReceipt(_ref) {
     });
 
     var toPrice = function toPrice(num) {
-        return num === 0 ? '-' : '£' + num.toFixed(2);
+        return num === 0 ? '-' : '£' + (num / 100).toFixed(2);
     };
 
     lineItems.map(function (_ref2) {
