@@ -39,6 +39,14 @@ describe('the shopping cart module', () => {
             });
         });
 
+        context('when called with an array containing a three oranges (check float precision issues)', () => {
+            it('should return the correct total', () => {
+                const items = [ ORANGE, ORANGE, ORANGE ];
+
+                expect(getTotalCost(items)).to.equal(0.90);
+            });
+        });
+
         context('when called with an array containing a single clove of garlic', () => {
             it('should return the correct total', () => {
                 const items = [ GARLIC ];
